@@ -38,3 +38,54 @@
     font-size: 12px;
 }
 
+.postCenter{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.postImg{
+    margin-top: 20px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.postHr{
+    margin-bottom: 10px;
+}
+
+.postBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postBottomLeft{
+    display: flex;
+    align-items: center;
+}
+
+.likeIcon{
+    width: 24px;
+    height: 24px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.likeSperator{
+    border-left: 1px solid lightgray;
+    height: 15px;
+    margin-right: 3px;
+}
+
+.postLikeCounter{
+    font-size: 15px;
+    /* color: gray; */
+    margin-left: 10px;
+}
+
+.postCommentText{
+    font-size: 15px;
+    /* color: gray; */
+    border-bottom: 1px dashed gray;
+}
