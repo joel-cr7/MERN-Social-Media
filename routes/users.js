@@ -127,4 +127,17 @@ router.put("/:id/unfollow", async (req, res) => {
 });
 
 
+// Get all users
+router.get('/usersList/:userId', function (req, res) {
+    try {
+        User.find({}, function (err, users) {
+            const filtered = users.filter((f)=>f._id != req.params.userId)
+            res.status(200).json(filtered);
+        });
+    } catch (err) {
+        res.status(500).json("Error!");
+    }
+});
+
+
 module.exports = router;
