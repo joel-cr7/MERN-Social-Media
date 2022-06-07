@@ -1,5 +1,6 @@
 import "./login.css";
 import { useContext, useRef } from 'react';
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -45,7 +46,9 @@ export default function Login() {
                         <input placeholder="Password" type="password" required minLength="6" className="loginInput" ref={password}/>
                         <button disabled={isFetching} className="loginBtn">{isFetching ? <CircularProgress color="inherit" size="30px"/> : "Login"}</button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">{isFetching ? <CircularProgress color="inherit" size="30px"/> : "Create a New Account"}</button>
+                        <Link to="/register" style={{textAlign: "center", color: "#1775ee", fontSize: "18px"}}>
+                            Don't have an account? Register
+                        </Link> 
                     </form>
                 </div>
             </div>

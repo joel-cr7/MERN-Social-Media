@@ -51,7 +51,7 @@ export default function Rightbar({ user }) {
         <div className="birthdayContainer">
           <img className="bitrhdayImg" src="assets/gift.png" alt="" />
           <span className="birthdayText">
-            <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
+            <b>Oliver Smith</b> and <b>2 others</b> have their birhday today.
           </span>
         </div>
         <img className="rightbarAd" src="assets/ad.png" alt="" />
