@@ -11,3 +11,8 @@
     object-fit: cover;
     margin-right: 10px;
 }
+
+.sidebarFriendName{
+    margin-left: 10px;
+    font-weight: 500;
+}

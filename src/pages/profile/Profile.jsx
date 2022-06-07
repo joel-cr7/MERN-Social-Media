@@ -21,7 +21,6 @@ export default function Profile() {
         // async function to make request for all timeline posts
         const fetchUser = async () => {
             const res = await axios.get(`/users?username=${username}`);
-            console.log("this is response "+ res);
             setUser(res.data);
         }
         fetchUser();

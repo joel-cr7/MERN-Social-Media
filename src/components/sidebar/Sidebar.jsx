@@ -1,17 +1,52 @@
 import './sidebar.css';
 import { RssFeed, Chat, PlayCircle, Group, Bookmarks, HelpOutline, WorkOutline, Event, School } from "@mui/icons-material";
 import CloseFriends from '../closeFriends/CloseFriends';
-import {Users} from "../../dummyData";
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Sidebar() {
+
+  const [friends, setFriends] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  // Fetch all suggested friends
+  useEffect(() => {
+    const getFriendsList = async () => {
+      try {
+        const friendsList = await axios.get('/users/usersList/' + user._id);
+        setFriends(friendsList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriendsList();
+  }, [user]);
+
+
   return (
     <div className='sidebar'>
       <div className="sidebarWrapper">
+
+        <ul className="sidebarFriendList">
+
+          {/* Display list of close friends */}
+          <div className="suggestedFriends">Suggested Friends</div>
+          {friends.map(u => (
+            <CloseFriends key={u._id} user={u} />
+          ))}
+
+        </ul>
+
+
+        <hr className="sidebarHr" />
+
+
         <ul className="sidebarList">
 
           {/* Feed Item */}
           <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon"/>
+            <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">
               Feed
             </span>
@@ -19,7 +54,7 @@ export default function Sidebar() {
 
           {/* Chat Item */}
           <li className="sidebarListItem">
-            <Chat className="sidebarIcon"/>
+            <Chat className="sidebarIcon" />
             <span className="sidebarListItemText">
               Chats
             </span>
@@ -27,7 +62,7 @@ export default function Sidebar() {
 
           {/* Videos Item */}
           <li className="sidebarListItem">
-            <PlayCircle className="sidebarIcon"/>
+            <PlayCircle className="sidebarIcon" />
             <span className="sidebarListItemText">
               Videos
             </span>
@@ -35,7 +70,7 @@ export default function Sidebar() {
 
           {/* Groups Item */}
           <li className="sidebarListItem">
-            <Group className="sidebarIcon"/>
+            <Group className="sidebarIcon" />
             <span className="sidebarListItemText">
               Groups
             </span>
@@ -43,7 +78,7 @@ export default function Sidebar() {
 
           {/* Bookmarks Item */}
           <li className="sidebarListItem">
-            <Bookmarks className="sidebarIcon"/>
+            <Bookmarks className="sidebarIcon" />
             <span className="sidebarListItemText">
               Bookmarks
             </span>
@@ -51,7 +86,7 @@ export default function Sidebar() {
 
           {/* Questions Item */}
           <li className="sidebarListItem">
-            <HelpOutline className="sidebarIcon"/>
+            <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">
               Questions
             </span>
@@ -59,7 +94,7 @@ export default function Sidebar() {
 
           {/* Jobs Item */}
           <li className="sidebarListItem">
-            <WorkOutline className="sidebarIcon"/>
+            <WorkOutline className="sidebarIcon" />
             <span className="sidebarListItemText">
               Jobs
             </span>
@@ -67,7 +102,7 @@ export default function Sidebar() {
 
           {/* Events Item */}
           <li className="sidebarListItem">
-            <Event className="sidebarIcon"/>
+            <Event className="sidebarIcon" />
             <span className="sidebarListItemText">
               Events
             </span>
@@ -75,7 +110,7 @@ export default function Sidebar() {
 
           {/* Courses Item */}
           <li className="sidebarListItem">
-            <School className="sidebarIcon"/>
+            <School className="sidebarIcon" />
             <span className="sidebarListItemText">
               Courses
             </span>
@@ -83,16 +118,8 @@ export default function Sidebar() {
 
         </ul>
         <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
 
-        <ul className="sidebarFriendList">
 
-          {/* Display list of close friends */}
-          {Users.map(u=>(
-            <CloseFriends key={u.id} user={u}/>
-          ))}
-
-        </ul>
       </div>
     </div>
   )
